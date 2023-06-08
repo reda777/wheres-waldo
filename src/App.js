@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
-function App() {
-  const [game, setGame] = useState("Bee");
+function App({ setCurrentGame }) {
+  const [game, setGame] = useState("bee");
   const intervalIdRef = useRef(null);
-
-  const imgArray = ["Bee", "Cat", "Waldo", "Hollow"]; //you will get values from the database
+  const imgArray = ["bee", "cat", "lollipop", "rick"]; //you will get values from the database
 
   useEffect(() => {
     randomGame();
@@ -23,12 +22,16 @@ function App() {
   function handleMouseLeave() {
     randomGame();
   }
+  function handleClick() {
+    setCurrentGame(game);
+  }
   return (
     <div className="App">
       <Link
         to="/game"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
       >
         Where's {game}
       </Link>
